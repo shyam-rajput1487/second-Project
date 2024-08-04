@@ -1,0 +1,112 @@
+*body {
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    background-color: black;
+    /* background-color: aliceblue; */
+}
+
+.topcontent {
+    
+    height: fit-content;
+    border-radius: 10px;
+    height: fit-content;
+    padding: 10px;
+    height: 60px;
+    text-align: center;
+    justify-content: center;
+    background-image: linear-gradient(to bottom right, red, yellow);
+}
+
+
+.container {
+    margin-top: 10px;
+    border-radius: 10px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* background-image: radial-gradient(circle, red, yellow, rgb(193, 222, 193)); */
+}
+
+.input-box {
+    width: 60%;
+    height: 60px;
+    border-radius: 20px;
+    margin: 5px;
+    font-size: 20px;
+    /* background-color: skyblue; */
+    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 1));
+}
+
+::placeholder {
+    text-align: center;
+    color: black;
+
+}
+
+
+.input-box:hover {
+    background-color: rgb(162, 216, 237);
+}
+
+.download-share {
+    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 1));
+    border-radius: 10px;
+    border: none;
+    width: 170px;
+    padding: 5px;
+    text-align: center;
+
+}
+.share{
+    margin-left: 5px;
+}
+
+.image {
+    height: 300px;
+    width: 340px;
+    border-radius: 10px;
+    flex-wrap: wrap;
+}
+
+.download-share:hover {
+    background-color: rgb(162, 216, 237);
+
+}
+
+
+a {
+    text-decoration: none;
+
+
+}
+
+
+.container1 {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+  
+}
+
+.a {
+    height: 300px;
+    width: 380px;
+    word-wrap: wrap;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+p {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    word-wrap: break-word;
+}

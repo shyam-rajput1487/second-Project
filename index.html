@@ -1,11 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Text to Image Generation</title>
+    <link rel="stylesheet" href="./CSS/style.css">
 </head>
+
 <body>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsum expedita iste ratione minus unde ipsam ex. Accusamus perferendis illum, explicabo reiciendis ipsa omnis aspernatur molestias repudiandae similique adipisci provident?</p>
+    <div class="topcontent">
+        <p> &#128512; Design and edit anything you can imagine with AI &#128512;</p>
+    </div>
+
+    <div class="container">
+        <input class="input-box" type="text" id="textInput" placeholder="Enter Your Text Here...">
+        <button class="input-box" onclick="generateImage()">Generate Image</button>
+
+        <div id="imageContainer" style="display:none;">
+            <img class="image" id="generatedImage" src="" alt="Generated Image"> <br>
+            <button class="download-share" onclick="copyImageUrl()">Copy Image URL</button>
+            <a class="download-share  share" id="downloadLink" download="generated_image.png">Download Image Here</a>
+        </div>
+    </div>
+
+    <div class="container1">
+        <img class="a" src="./Images/generated_image (2).png" alt="img">
+        <img class="a" src="./Images/generated_image (3).png" alt="img">
+        <img class="a" src="./Images/generated_image (2).png" alt="img">
+        <img class="a" src="./Images/generated_image (3).png" alt="img">
+        <img class="a" src="./Images/generated_image (2).png" alt="img">
+        <img class="a" src="./Images/generated_image (3).png" alt="img">
+        <img class="a" src="./Images/generated_image (2).png" alt="img">
+        <img class="a" src="./Images/generated_image (3).png" alt="img">
+        <img class="a" src="./Images/generated_image (2).png" alt="img">
+    </div>
+    <p>Copyright 2023 &#9400; Shyam rajput || All Rights Reserved.</p>
+
+    <div class="header">
+       
+        <script>
+            async function query(data) {
+                try {
+                    const response = await fetch(
+                        "https://api-inference.huggingface.co/models/Melonie/text_to_image_finetuned",
+                        {
+                            headers: { Authorization: "Bearer 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" },
+                            method: "POST",
+                            body: JSON.stringify(data),
+                        }
+                    );
+                    if (!response.ok) {
+                        throw new Error('Failed to generate image');
+                    }
+                    const result = await response.blob();
+                    return URL.createObjectURL(result);
+                } catch (error) {
+                    console.error('Error:', error);
+                    return null;
+                }
+            }
+
+            async function generateImage() {
+                const textInput = document.getElementById('textInput').value;
+                if (!textInput) {
+                    alert('Please enter some text to generate an image.');
+                    return;
+                }
+
+                const imageUrl = await query({ "inputs": textInput });
+                if (imageUrl) {
+                    const generatedImage = document.getElementById('generatedImage');
+                    generatedImage.src = imageUrl;
+                    const downloadLink = document.getElementById('downloadLink');
+                    downloadLink.href = imageUrl;
+                    const imageContainer = document.getElementById('imageContainer');
+                    imageContainer.style.display = 'block'; // Show the image container
+                } else {
+                    alert('Failed to generate image. Please try again later.'); // Notify the user
+                }
+            }
+
+            function copyImageUrl() {
+                const imageUrl = document.getElementById('generatedImage').src;
+                if (!imageUrl) {
+                    alert('No image URL to copy.');
+                    return;
+                }
+
+                const tempInput = document.createElement('input');
+                tempInput.value = imageUrl;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                alert('Image URL copied to clipboard!');
+            }
+        </script>
 </body>
+
 </html>
